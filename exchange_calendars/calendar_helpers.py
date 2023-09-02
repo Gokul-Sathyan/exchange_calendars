@@ -373,7 +373,7 @@ def parse_date(
     # allowing `date` to be defined with a second (or more accurate) compoment
     # if it falls within the minute that follows midnight.
     ts = parse_timestamp(date, param_name, raise_oob=False, side="left", utc=False)
-
+    ts = ts.tz_localize(None)
     if ts.tz is not None:
         raise ValueError(
             f"Parameter `{param_name}` received with timezone defined as '{ts.tz.zone}'"
